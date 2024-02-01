@@ -19,7 +19,7 @@ export const Form = () => {
         <form className="form">
             <input className="form__input input" 
                 type="text" 
-                placeholder="Enter you search" 
+                placeholder="Enter repo name for search" 
                 value={query} 
                 onChange={onChange} />
             <button type="submit" 
