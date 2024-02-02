@@ -3,7 +3,7 @@ import './Welcome.css';
 import { ROUTES } from '../../constants';
 
 export const Welcome = () => {
-    let navigate = useNavigate(); 
+    const navigate = useNavigate(); 
     const goToHomePage = () =>{ 
       navigate(ROUTES.home);
     }

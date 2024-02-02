@@ -65,7 +65,7 @@ export const ListOfData = () => {
         <ul className="list">
             {
                 repos.map((el) => (
-                        <li id={`${el.node.name}__${el.node.owner.login}`}>
+                        <li key={`${el.node.name}__${el.node.owner.login}`}>
                             <span>Repository name: </span>
                             <i>{el.node.name}</i>
                         </li>
