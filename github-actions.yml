@@ -1,4 +1,0 @@
-on:
-  workflow_dispatch:
-env:
-  REACT_APP_TOKEN: ${{ vars.REACT_APP_TOKEN }}
