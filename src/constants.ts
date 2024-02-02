@@ -6,18 +6,24 @@ export enum ROUTES {
 
 export const GRAPHQL_URL = 'https://api.github.com/graphql';
 
+type Repo = {
+  node: {
+    owner: {
+      login: string,
+    },
+    name: string,
+  }
+};
+
 export interface IRepository {
   search: {
     repositoryCount: number,
-    edges: [
-      {
-        node: {
-          owner: {
-            login: string
-          },
-          name: string,
-        }
-      }
-    ]
+    edges: Repo[],
+    pageInfo: {
+      endCursor: string,
+      startCursor: string,
+      hasNextPage: boolean,
+      hasPreviousPage: boolean,
+    }
   }
 };

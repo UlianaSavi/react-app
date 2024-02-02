@@ -24,7 +24,6 @@ export const Form = () => {
                 onChange={onChange} />
             <button type="submit" 
                 className="form__btn btn" 
-                disabled={!query.length} 
                 onClick={search}>Get</button>
         </form>
     );
