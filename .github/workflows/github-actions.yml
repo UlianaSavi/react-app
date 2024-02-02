@@ -1,3 +1,2 @@
 env:
-  react_app_token: ${{ vars.REACT_APP_TOKEN }}
-  react_app_token: ${{ secrets.REACT_APP_TOKEN }}
+  REACT_APP_TOKEN: ${{ vars.REACT_APP_TOKEN }}
