@@ -44,6 +44,11 @@ export const useGetRepos = (query: string) => {
   };
 
   useEffect(() => {
+    setcurrentSectionId(null);
+    setRepos([]);
+  }, [query]);
+
+  useEffect(() => {
     if (
       (data && currentSectionId !== prevSectionId) ||
       (!repos.length && data)
@@ -51,7 +56,7 @@ export const useGetRepos = (query: string) => {
       setRepos([...repos, ...data.search.edges]);
       setPrevSectionId(currentSectionId);
     }
-  }, [data, currentSectionId, prevSectionId]); // repos
+  }, [data, repos, currentSectionId, prevSectionId]);
 
   return { repos, fetchMore };
 };

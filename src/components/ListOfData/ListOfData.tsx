@@ -2,12 +2,21 @@ import { useSearchParams } from 'react-router-dom';
 import { useGetRepos } from '../../hooks/useGetRepos';
 import './ListOfData.css';
 import { GITHUB_URL } from '../../constants';
+import { usePagination } from '../../hooks/usePagination';
+import { useEffect } from 'react';
 
 export const ListOfData = () => {
   const [searchParams] = useSearchParams();
   const query = `${searchParams.get('search') || ''} in:name`;
 
   const { repos, fetchMore } = useGetRepos(query);
+  const { containerRef, isVisible } = usePagination();
+
+  useEffect(() => {
+    if (isVisible) {
+      fetchMore();
+    }
+  }, [isVisible]);
 
   if (!searchParams.get('search') || !repos.length) {
     return (
@@ -19,13 +28,15 @@ export const ListOfData = () => {
 
   return (
     <>
-      <button onClick={fetchMore}>fetch</button>
       <ul className="list">
         {repos.map((el) => (
           <li className="card" key={`${el.node.name}__${el.node.owner.login}`}>
-            <div className="card__img">
+            <a
+              href={`${GITHUB_URL}${el.node.resourcePath}`}
+              className="card__img"
+            >
               <img className="img" src={el.node.owner.avatarUrl} alt="Avatar" />
-            </div>
+            </a>
             <div className="card__text-wrap">
               <div className="card__text">
                 <p className="title">Repository name: </p>
@@ -63,6 +74,7 @@ export const ListOfData = () => {
             </div>
           </li>
         ))}
+        <div ref={containerRef} className="interceptor"></div>
       </ul>
     </>
   );
