@@ -5,7 +5,7 @@
 1) Склонировать репозиторий - `git clone <repo name>`
 2) Выполнить команду в консоли от корня приложения - `npm i`
 3) Создать .env файл в корне проекта
-4) Сгенерировать ключ - https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository (в доступах достаточно будет чекбокса `public_repo`)
+4) Сгенерировать ключ -  [https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) (в доступах достаточно будет чекбокса `public_repo`)
 5) Добавить сгенерированный ключ в .env файл в виде: `REACT_APP_TOKEN=token`
 5) Выполнить команду запуска приложения - `npm run start`
 6) Перейти в Chrome на `http://localhost:3000/`
@@ -17,10 +17,10 @@
 1) Clone the repository - `git clone <repo name>`
 2) Run the command in the console from the root of the app - `npm i`
 3) Create an .env file in the root of the project
-4) Generate a key - https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository (the `public_repo` checkbox will be enough for access)
+4) Generate a key - [https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) (the `public_repo` checkbox will be enough for access)
 5) Add the generated key to the .env file in the way: `REACT_APP_TOKEN=token`
-5) Execute the application launch command - `npm run start`
-6) Go to Chrome on `http://localhost:3000 /`
+6) Execute the application launch command - `npm run start`
+7) Go to Chrome on `http://localhost:3000 /`
 
 ## Available Scripts
 
