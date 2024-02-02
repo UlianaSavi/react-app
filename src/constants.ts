@@ -1,17 +1,23 @@
+export const GRAPHQL_URL = 'https://api.github.com/graphql';
+
+export const GITHUB_URL = 'https://github.com';
+
 export enum ROUTES {
   empty = '/',
   welcome = '/welcome',
   home = '/home',
 }
 
-export const GRAPHQL_URL = 'https://api.github.com/graphql';
-
 type Repo = {
   node: {
+    resourcePath: string;
     owner: {
       login: string;
+      avatarUrl: string;
+      resourcePath: string;
     };
     name: string;
+    description: string;
   };
 };
 

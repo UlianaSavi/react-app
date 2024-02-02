@@ -1,60 +1,13 @@
-import { useState, useEffect } from 'react';
-import gql from 'graphql-tag';
 import { useSearchParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-
+import { useGetRepos } from '../../hooks/useGetRepos';
 import './ListOfData.css';
-import { IRepository } from '../../constants';
-
-const GET_DATA = gql`
-  query GetRepos($query: String!, $after: String) {
-    search(query: $query, type: REPOSITORY, first: 10, after: $after) {
-      repositoryCount
-      edges {
-        node {
-          ... on Repository {
-            owner {
-              login
-            }
-            name
-          }
-        }
-      }
-      pageInfo {
-        endCursor
-        startCursor
-        hasNextPage
-        hasPreviousPage
-      }
-    }
-  }
-`;
+import { GITHUB_URL } from '../../constants';
 
 export const ListOfData = () => {
-  const [prevSectionId, setPrevSectionId] = useState<string | null>(null);
-  const [currentSectionId, setcurrentSectionId] = useState<string | null>(null);
-  const [repos, setRepos] = useState<IRepository['search']['edges']>([]);
   const [searchParams] = useSearchParams();
-  const query = `${searchParams.get('search') || ''} :in:name`;
+  const query = `${searchParams.get('search') || ''} in:name`;
 
-  const { data } = useQuery<IRepository>(GET_DATA, {
-    variables: { query, after: currentSectionId },
-  });
-
-  const fetchMore = () => {
-    setcurrentSectionId(data?.search?.pageInfo?.endCursor || null);
-  };
-
-  useEffect(() => {
-    console.log(currentSectionId, prevSectionId, data, repos);
-    if (
-      (data && currentSectionId !== prevSectionId) ||
-      (!repos.length && data)
-    ) {
-      setRepos([...repos, ...data.search.edges]);
-      setPrevSectionId(currentSectionId);
-    }
-  }, [data, repos, currentSectionId, prevSectionId]);
+  const { repos, fetchMore } = useGetRepos(query);
 
   if (!searchParams.get('search') || !repos.length) {
     return (
@@ -69,9 +22,45 @@ export const ListOfData = () => {
       <button onClick={fetchMore}>fetch</button>
       <ul className="list">
         {repos.map((el) => (
-          <li key={`${el.node.name}__${el.node.owner.login}`}>
-            <span>Repository name: </span>
-            <i>{el.node.name}</i>
+          <li className="card" key={`${el.node.name}__${el.node.owner.login}`}>
+            <div className="card__img">
+              <img className="img" src={el.node.owner.avatarUrl} alt="Avatar" />
+            </div>
+            <div className="card__text-wrap">
+              <div className="card__text">
+                <p className="title">Repository name: </p>
+                <a
+                  className="link"
+                  href={`${GITHUB_URL}${el.node.resourcePath}`}
+                >
+                  {el.node.name}
+                </a>
+              </div>
+              <div className="card__text">
+                <p className="title">Repository link: </p>
+                <a
+                  className="link"
+                  href={`${GITHUB_URL}${el.node.resourcePath}`}
+                >
+                  {`${GITHUB_URL}${el.node.resourcePath}`}
+                </a>
+              </div>
+              <div className="card__text">
+                <p className="title">Repository author: </p>
+                <a
+                  className="link"
+                  href={`${GITHUB_URL}${el.node.owner.resourcePath}`}
+                >
+                  {`${GITHUB_URL}${el.node.owner.resourcePath}`}
+                </a>
+              </div>
+              <div className="card__text">
+                <p className="title">Repository description: </p>
+                <span>
+                  {el.node.description ? el.node.description : 'Empty'}
+                </span>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
