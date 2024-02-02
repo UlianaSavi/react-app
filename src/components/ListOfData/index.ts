@@ -1,1 +1,1 @@
-export { ListOfData } from './ListOfData'
+export { ListOfData } from './ListOfData';

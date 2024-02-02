@@ -1,6 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from 'react-router-dom';
 import { Welcome } from './pages/Welcome';
 import { Home } from './pages/Home';
 import { ROUTES } from './constants';
@@ -15,11 +20,14 @@ export const App = () => {
 
       <Router>
         <Routes>
-            <Route path={ROUTES.empty} element={<Navigate to={ROUTES.welcome} replace={true} />} />
-            <Route path={ROUTES.welcome} element={<Welcome/>} />
-            <Route path={ROUTES.home} element={<Home/>} />
+          <Route
+            path={ROUTES.empty}
+            element={<Navigate to={ROUTES.welcome} replace={true} />}
+          />
+          <Route path={ROUTES.welcome} element={<Welcome />} />
+          <Route path={ROUTES.home} element={<Home />} />
         </Routes>
       </Router>
     </div>
   );
-}
+};

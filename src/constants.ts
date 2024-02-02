@@ -1,7 +1,7 @@
 export enum ROUTES {
   empty = '/',
   welcome = '/welcome',
-  home = '/home'
+  home = '/home',
 }
 
 export const GRAPHQL_URL = 'https://api.github.com/graphql';
@@ -9,21 +9,21 @@ export const GRAPHQL_URL = 'https://api.github.com/graphql';
 type Repo = {
   node: {
     owner: {
-      login: string,
-    },
-    name: string,
-  }
+      login: string;
+    };
+    name: string;
+  };
 };
 
 export interface IRepository {
   search: {
-    repositoryCount: number,
-    edges: Repo[],
+    repositoryCount: number;
+    edges: Repo[];
     pageInfo: {
-      endCursor: string,
-      startCursor: string,
-      hasNextPage: boolean,
-      hasPreviousPage: boolean,
-    }
-  }
+      endCursor: string;
+      startCursor: string;
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+    };
+  };
 }
