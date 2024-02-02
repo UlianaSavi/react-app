@@ -1,4 +1,2 @@
-on:
-  [push]
 env:
   REACT_APP_TOKEN: ${{ vars.REACT_APP_TOKEN }}
