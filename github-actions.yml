@@ -1,16 +1,2 @@
-name: react-app
-
-on:
-  push:
-    branches:
-      - gh-pages
-
-jobs:
-  build:
-
-    steps:
-
-    - name: Deploy
-      with:
-        REACT_APP_TOKEN: ${{ secrets.REACT_APP_TOKEN }}
-        BRANCH: gh-pages
+env:
+  REACT_APP_TOKEN: ${{ secrets.REACT_APP_TOKEN }}
