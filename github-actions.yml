@@ -1,12 +1,12 @@
 env:
-  REACT_APP_TOKEN: ${{ secrets.REACT_APP_TOKEN }}
+  REACT_APP_TOKEN: ${{ vars.REACT_APP_TOKEN }}
 
 jobs:
   build:
     env:
-        REACT_APP_TOKEN: ${{ secrets.REACT_APP_TOKEN }}
+        REACT_APP_TOKEN: ${{ vars.REACT_APP_TOKEN }}
 
 steps:
   - name: react app
     env:
-      REACT_APP_TOKEN: ${{ secrets.REACT_APP_TOKEN }}
+      REACT_APP_TOKEN: ${{ vars.REACT_APP_TOKEN }}
